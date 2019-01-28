@@ -1,0 +1,2367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="css/icons/favicon.png">
+    <title>R-MODELER</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="bootstrap/css/style.css" rel="stylesheet">
+    <!-- page css -->
+    <link href="icon-page.css" rel="stylesheet">
+    <link href="css/icons/themify-icons/themify-icons.css" id="theme" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="bootstrap/css/default-dark.css" id="theme" rel="stylesheet">
+		<link href="bootstrap/css/popupwindow.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9] -->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="bootstrap/js/log.js"></script>
+    <script src="bootstrap/js/jquery-1.10.2.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/jsplumbtoolkit-defaults.css">
+    <link rel="stylesheet" href="bootstrap/css/jsplumbtoolkit-demo.css">
+    <link rel="stylesheet" href="bootstrap/css/plumb.css">
+    <link rel="stylesheet" href="bootstrap/css/main.css">
+       <![endif]-->
+    <style>
+        .min{cursor: pointer;
+    font-size: 36px;
+    line-height: 16px;}
+        .min1{cursor: pointer;
+    font-size: 16px;
+    line-height: 16px;}
+	.popupwindow_container{z-index:99;}
+    body{
+        font-family: "Comic Sans MS",sans-serif;
+    }
+
+        #textfile,#textfile2,#textfile3{
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+        
+        #desgtext,#desgtext2,#desgtext3{
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 170px;
+            background-color:#e9e9e9 ;
+            padding: 5px;
+            text-align: left;
+        }
+        #desgtext:active,#meantext:active, #sumtext:active, #difftext:active, #mediantext:active,#sdtext:active,
+        #rangetext:active, #mintext:active,#maxtext:active, #cortext:active,#desgtext2:active,#desgtext3:active,#sumtext:active,#summarytext:active,
+    #desgfrm:active,#desgfrm2:active,#desgfrm3:active    {
+            border: 1px solid #398bf7;
+
+
+        }
+        #meantext, #sumtext, #difftext, #mediantext,#sdtext, #rangetext, #mintext,#maxtext, #cortext {
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 350px;
+            margin-left: 30px;
+            background-color:#e9e9e9 ;
+            padding:5px;
+            text-align: left;
+        }
+        #summarytext{
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 250px;
+            margin-left: 30px;
+            background-color:#e9e9e9 ;
+            padding: 5px;
+            text-align: left;
+        }
+        #desgfrm,#desgfrm2,#desgfrm3{ border: 1px solid black;
+            border-radius: 5px;
+            width: 240px;
+            margin-left: 60px;
+            background-color:#e9e9e9 ;
+            padding-top: 8px;
+            text-align: center;
+
+        }
+        .glyphicon{
+            color: #398bf7;
+
+        }
+
+    </style>
+
+
+     <link rel="stylesheet" href="bootstrap/css/jquery-ui.css">
+  <link rel="stylesheet" href="bootstrap/css/style.css">
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+   $(function() { $("#desgfrm").draggable();
+   $("#desgfrm2").draggable();
+   $("#desgfrm3").draggable();
+   $("#log").draggable().resizable();
+   $("#console").draggable().resizable();
+   
+    $("#desgtext").draggable();
+    $("#desgtext2").draggable();
+    $("#desgtext3").draggable();
+
+   $("#logtext").draggable().resizable();
+   $("#consoletext").draggable().resizable();
+
+
+   });
+        $( function() {
+    //$( ".drag" ).draggable();
+        $( "#textdraggable" ).draggable();
+        $( "#textdraggable2" ).draggable();
+        $( "#textdraggable3" ).draggable();
+
+        $("#meantext").draggable();
+        $("#maxtext").draggable();
+        $("#mediantext").draggable();
+            $("#sdtext").draggable();
+            $("#difftext").draggable();
+            $("#mintext").draggable();
+            $("#sumtext").draggable();
+            $("#cortext").draggable();
+            $("#rangetext").draggable();
+            $("#summarytext").draggable();
+
+    
+  } );
+         
+      
+    </script>
+    
+    <script>
+
+            
+
+
+
+        $(document).ready(function(){
+            //Counter
+            counter = 0;
+            //Make element draggable
+            $(".drag").draggable({
+                helper:'clone',
+                //containment: '#desgdiv',
+                //When first dragged
+                
+            });
+			
+			
+			
+	
+					
+					
+					
+					
+            //Make element droppable
+            $("#desgdiv").droppable({
+                drop: function(ev, ui) {
+                    if($(ui.draggable).attr("id")==="draggable")
+                    {
+   document.getElementById("desg").style.display="block";
+   $('#desgdiv').find('input').val('');
+                    }
+					 if($(ui.draggable).attr("id")==="draggable2")
+                    {
+   document.getElementById("desg2").style.display="block";
+   $('#desgdiv').find('input').val('');
+                    }
+					 if($(ui.draggable).attr("id")==="draggable3")
+                    {
+   document.getElementById("desg3").style.display="block";
+   $('#desgdiv').find('input').val('');
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable")
+                    {
+                         document.getElementById("desgtext").style.display="block";
+                         $('#desgtext').find('input:file').val('');
+						 GlblVal="text";
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable2")
+					{
+                         document.getElementById("desgtext2").style.display="block";
+                         $('#desgtext2').find('input:file').val('');
+						 GlblVal="CSV";
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable3")
+					{
+                         document.getElementById("desgtext3").style.display="block";
+                         $('#desgtext3').find('input:file').val('');
+						 GlblVal="excel";
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable4")
+					{
+                         document.getElementById("meantext").style.display="block";
+                         $('#meantext').find('input:text').val('');
+						 GlblVal="mean";
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable5")
+					{
+                         document.getElementById("mediantext").style.display="block";
+                         $('#mediantext').find('input:text').val('');
+						 GlblVal="median";
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable6")
+					{
+                         document.getElementById("mintext").style.display="block";
+                         $('#mintext').find('input:text').val('');
+						 GlblVal="min";
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable7")
+					{
+                         document.getElementById("maxtext").style.display="block";
+                         $('#maxtext').find('input:text').val('');
+						 GlblVal="max";
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable8")
+					{
+                         document.getElementById("sdtext").style.display="block";
+                         $('#sdtext').find('input:text').val('');
+						 GlblVal="sd";
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable9")
+					{
+                         document.getElementById("difftext").style.display="block";
+                         $('#difftext').find('input:text').val('');
+						 GlblVal="diff";
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable10")
+					{
+                         document.getElementById("rangetext").style.display="block";
+                         $('#rangetext').find('input:text').val('');
+						 GlblVal="range";
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable11")
+					{
+                         document.getElementById("sumtext").style.display="block";
+                         $('#sumtext').find('input:text').val('');
+						 GlblVal="sum";
+                    }
+                     else if($(ui.draggable).attr("id")==="textdraggable12")
+                     {
+                         document.getElementById("cortext").style.display="block";
+                         $('#cortext').find('input:text').val('');
+                         GlblVal="cor";
+                     }
+else if($(ui.draggable).attr("id")==="textdraggable13")
+{
+                         document.getElementById("summarytext").style.display="block";
+                         $('#summarytext').find('input:text').val('');
+						 GlblVal="Summry";
+                    }
+                }
+            }); 
+			
+			
+			
+			
+			//Make element draggable
+          
+			
+			 //Make element droppable
+            $("#logdiv").droppable({
+                drop: function(ev, ui) {
+                    if($(ui.draggable).attr("id")==="draggable")
+                    {
+   document.getElementById("log").style.display="block";
+   $('#logdiv').find('input').val('');
+                    }
+					 if($(ui.draggable).attr("id")==="draggable2")
+                    {
+   document.getElementById("log").style.display="block";
+   $('#logdiv').find('input').val('');
+                    }
+					 if($(ui.draggable).attr("id")==="draggable3")
+                    {
+   document.getElementById("log").style.display="block";
+   $('#logdiv').find('input').val('');
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable")
+                    {
+                         document.getElementById("logtext").style.display="block";
+                         $('#logtext').find('input:file').val('');
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable2")
+					{
+                         document.getElementById("logtext").style.display="block";
+                         $('#logtext').find('input:file').val('');
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable3")
+					{
+                         document.getElementById("logtext").style.display="block";
+                         $('#logtext').find('input:file').val('');
+                    }
+
+                }
+            });
+			
+			
+			
+			
+			
+			
+			 //Make element droppable
+            $("#consolediv").droppable({
+                drop: function(ev, ui) {
+                    if($(ui.draggable).attr("id")==="draggable")
+                    {
+   document.getElementById("console").style.display="block";
+   $('#consolediv').find('input').val('');
+                    }
+					 if($(ui.draggable).attr("id")==="draggable2")
+                    {
+   document.getElementById("console").style.display="block";
+   $('#consolediv').find('input').val('');
+                    }
+					 if($(ui.draggable).attr("id")==="draggable3")
+                    {
+   document.getElementById("console").style.display="block";
+   $('#consolediv').find('input').val('');
+                    }
+                    else if($(ui.draggable).attr("id")==="textdraggable")
+                    {
+                         document.getElementById("consoletext").style.display="block";
+                         $('#consoletext').find('input:file').val('');
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable2")
+					{
+                         document.getElementById("logtext").style.display="block";
+                         $('#consoletext').find('input:file').val('');
+                    }
+					else if($(ui.draggable).attr("id")==="textdraggable3")
+					{
+                         document.getElementById("consoletext").style.display="block";
+                         $('#consoletext').find('input:file').val('');
+                    }
+                }
+            });
+
+        });
+    </script>
+<script src="opencpu/opencpu-0.4.js"></script>
+
+  <script>
+  window.onload=function(){
+  //because read.csv is in utils
+
+//actual handler
+$("#run").on("click", function(){
+if(GlblVal=="Summry")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/utils/R")
+    //arguments
+   // var myheader = $("#header").val() == "true";
+    var myfile = $("#textfile2")[0].files[0];
+
+        
+    if(!myfile){
+        alert("No file selected.");
+        return;
+    }
+
+    //disable the button during upload
+    $("#run").attr("disabled", "disabled");
+
+    //perform the request
+    var req = ocpu.call("read.csv", {
+        "file" : myfile
+		//,
+       // "header" : myheader
+    }, function(session){
+        session.getConsole(function(outtxt){
+            //$("#output").text(outtxt);
+			summary(session);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/summary");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });
+    
+    //after request complete, re-enable the button 
+    req.always(function(){
+        $("#run").removeAttr("disabled")
+    });
+}
+else if(GlblVal=="mean")	
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/base/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#meanfile").val());
+    
+    //disable button
+    $("button").attr("disabled", "disabled");
+
+    //perform the request
+    var req = ocpu.call("mean", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/mean");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="median")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/stats/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#medianfile").val());
+    
+    //disable button
+    $("button").attr("disabled", "medianfile");
+
+    //perform the request
+    var req = ocpu.call("median", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/median");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="max")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/base/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#maxfile").val());
+    
+    //disable button
+    $("button").attr("disabled", "maxfile");
+
+    //perform the request
+    var req = ocpu.call("max", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/max");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="min")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/base/R");
+    //create snippet argument
+    var x = new ocpu.Snippet($("#minfile").val());
+    
+    //disable button
+    $("button").attr("disabled", "minfile");
+
+    //perform the request
+    var req = ocpu.call("min", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/min");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="sd")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/stats/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#sdfile").val());
+    
+    //disable button
+    $("button").attr("disabled", "sdfile");
+
+    //perform the request
+    var req = ocpu.call("sd", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/sd");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="diff")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/base/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#difffile").val());
+    
+    //disable button
+    $("button").attr("disabled", "difffile");
+
+    //perform the request
+    var req = ocpu.call("diff", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/diff");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="range")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/base/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#rangefile").val());
+    
+    //disable button
+    $("button").attr("disabled", "rangefile");
+
+    //perform the request
+    var req = ocpu.call("range", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/range");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="sum")
+{
+	ocpu.seturl("https://public.opencpu.org/ocpu/library/base/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#sumfile").val());
+    
+    //disable button
+    $("button").attr("disabled", "sumfile");
+
+    //perform the request
+    var req = ocpu.call("sum", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/sum");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+        
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });      
+    
+    req.always(function(){
+        $("button").removeAttr("disabled");    
+    });
+}
+else if(GlblVal=="cor")
+{
+    ocpu.seturl("https://public.opencpu.org/ocpu/library/stats/R")
+    //create snippet argument
+    var x = new ocpu.Snippet($("#corfile").val());
+
+    //disable button
+    $("button").attr("disabled", "corfile");
+
+    //perform the request
+    var req = ocpu.call("cor", {
+        "x" : x
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/cor");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });
+
+    req.always(function(){
+        $("button").removeAttr("disabled");
+    });
+}
+else if(GlblVal=="text")
+{
+
+    ocpu.seturl("https://public.opencpu.org/ocpu/library/utils/R")
+    //arguments
+    var myheader = $("#header").val() == "true";
+    var myfile = $("#textfile")[0].files[0];
+
+    if(!myfile){
+        alert("No file selected.");
+        return;
+    }
+
+    //disable the button during upload
+    $("#run").attr("disabled", "disabled");
+
+    //perform the request
+    var req = ocpu.call("read.csv", {
+        "file" : myfile,
+        "header" : myheader
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/read.csv");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });
+
+    //after request complete, re-enable the button
+    req.always(function(){
+        $("#run").removeAttr("disabled")
+    });
+}
+else if(GlblVal=="CSV")
+{
+
+    ocpu.seturl("https://public.opencpu.org/ocpu/library/utils/R")
+    //arguments
+    var myheader = $("#header").val() == "true";
+    var myfile = $("#textfile2")[0].files[0];
+
+    if(!myfile){
+        alert("No file selected.");
+        return;
+    }
+
+    //disable the button during upload
+    $("#run").attr("disabled", "disabled");
+
+    //perform the request
+    var req = ocpu.call("read.csv", {
+        "file" : myfile,
+        "header" : myheader
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/read.csv");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+
+
+
+        });
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });
+
+    //after request complete, re-enable the button
+    req.always(function(){
+        $("#run").removeAttr("disabled")
+    });
+}
+else if(GlblVal=="excel")
+{
+
+    ocpu.seturl("https://public.opencpu.org/ocpu/library/readxl/R")
+    //arguments
+   // var myheader = $("#header").val() == "true";
+    var myfile = $("#textfile3")[0].files[0];
+
+    if(!myfile){
+        alert("No file selected.");
+        return;
+    }
+
+    //disable the button during upload
+    $("#run").attr("disabled", "disabled");
+
+    //perform the request
+    var req = ocpu.call("read_xlsx", {
+        "path" : myfile,
+        //"header" : myheader
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt);
+            $("#printlink").attr("href", session.getLoc() + "R/.val/print");
+            $("#readlink").attr("href", session.getLoc() + "R/read_xlsx");
+            $("#stdoutlink").attr("href", session.getLoc() + "/stdout");
+            $("#sourcelink").attr("href", session.getLoc() + "/source");
+            $("#consolelink").attr("href", session.getLoc() + "/console");
+            $("#infolink").attr("href", session.getLoc() + "/info");
+            $("#vallink").attr("href", session.getLoc() + "/files/.val");
+            $("#deslink").attr("href", session.getLoc() + "/files/DESCRIPTION");
+        });
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });
+
+    //after request complete, re-enable the button
+    req.always(function(){
+        $("#run").removeAttr("disabled")
+    });
+}
+
+});
+};
+
+   function summary(data)
+{
+ocpu.seturl("https://public.opencpu.org/ocpu/library/base/R")
+//var x = new ocpu.Snippet(data);
+	var req = ocpu.call("summary", {
+        "object" : data
+    }, function(session){
+        session.getConsole(function(outtxt){
+            $("#output").text(outtxt); 
+        });
+    });
+	//if R returns an error, alert the error message
+    req.fail(function(){
+        alert("Server error: " + req.responseText);
+    });
+    
+    //after request complete, re-enable the button 
+    req.always(function(){
+        $("#submitbutton").removeAttr("disabled")
+    });
+}
+  </script>
+
+<script>
+            
+        var menuDisplayed = false;
+        var menuBox = null;
+        
+
+
+    function rightfunction(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+            
+            menuBox = window.document.querySelector(".menu");
+            menuBox.style.left = left + "px";
+            menuBox.style.top = top + "px";
+            menuBox.style.display = "block";
+            
+            arguments[0].preventDefault();
+            
+            menuDisplayed = true;
+        }
+        
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed == true){
+                menuBox.style.display = "none"; 
+            }
+        }, true);
+
+        var menuDisplayed2 = false;
+        var menuBox2 = null;
+
+        function rightfunction2(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox2 = window.document.querySelector(".menu2");
+            menuBox2.style.left = left + "px";
+            menuBox2.style.top = top + "px";
+            menuBox2.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed2 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed2 == true){
+                menuBox2.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed3 = false;
+        var menuBox3 = null;
+
+        function rightfunction3(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox3 = window.document.querySelector(".menu3");
+            menuBox3.style.left = left + "px";
+            menuBox3.style.top = top + "px";
+            menuBox3.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed3 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed3 == true){
+                menuBox3.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed4 = false;
+        var menuBox4 = null;
+
+        function rightfunction4(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox4 = window.document.querySelector(".menu4");
+            menuBox4.style.left = left + "px";
+            menuBox4.style.top = top + "px";
+            menuBox4.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed4 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed4 == true){
+                menuBox4.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed5 = false;
+        var menuBox5 = null;
+
+        function rightfunction5(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox5 = window.document.querySelector(".menu5");
+            menuBox5.style.left = left + "px";
+            menuBox5.style.top = top + "px";
+            menuBox5.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed5 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed5 == true){
+                menuBox5.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed6 = false;
+        var menuBox6 = null;
+
+        function rightfunction6(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox6 = window.document.querySelector(".menu6");
+            menuBox6.style.left = left + "px";
+            menuBox6.style.top = top + "px";
+            menuBox6.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed6 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed6 == true){
+                menuBox6.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed7 = false;
+        var menuBox7 = null;
+
+        function rightfunction7(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox7 = window.document.querySelector(".menu7");
+            menuBox7.style.left = left + "px";
+            menuBox7.style.top = top + "px";
+            menuBox7.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed7 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed7 == true){
+                menuBox7.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed8 = false;
+        var menuBox8 = null;
+
+        function rightfunction8(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox8 = window.document.querySelector(".menu8");
+            menuBox8.style.left = left + "px";
+            menuBox8.style.top = top + "px";
+            menuBox8.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed8 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed8 == true){
+                menuBox8.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed9 = false;
+        var menuBox9 = null;
+
+        function rightfunction9(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox9 = window.document.querySelector(".menu9");
+            menuBox9.style.left = left + "px";
+            menuBox9.style.top = top + "px";
+            menuBox9.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed9 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed9 == true){
+                menuBox9.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed10 = false;
+        var menuBox10 = null;
+
+        function rightfunction10(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox10 = window.document.querySelector(".menu10");
+            menuBox10.style.left = left + "px";
+            menuBox10.style.top = top + "px";
+            menuBox10.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed10 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed10 == true){
+                menuBox10.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed11 = false;
+        var menuBox11 = null;
+
+        function rightfunction11(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox11 = window.document.querySelector(".menu11");
+            menuBox11.style.left = left + "px";
+            menuBox11.style.top = top + "px";
+            menuBox11.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed11 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed11 == true){
+                menuBox11.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed12 = false;
+        var menuBox12 = null;
+
+        function rightfunction12(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox12 = window.document.querySelector(".menu12");
+            menuBox12.style.left = left + "px";
+            menuBox12.style.top = top + "px";
+            menuBox12.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed12 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed12 == true){
+                menuBox12.style.display = "none";
+            }
+        }, true);
+
+
+        var menuDisplayed13 = false;
+        var menuBox13 = null;
+
+        function rightfunction13(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox13 = window.document.querySelector(".menu13");
+            menuBox13.style.left = left + "px";
+            menuBox13.style.top = top + "px";
+            menuBox13.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed13 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed13 == true){
+                menuBox13.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed14 = false;
+        var menuBox14= null;
+
+        function rightfunction14(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox14 = window.document.querySelector(".menu14");
+            menuBox14.style.left = left + "px";
+            menuBox14.style.top = top + "px";
+            menuBox14.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed14 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed14 == true){
+                menuBox14.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed15 = false;
+        var menuBox15= null
+        ;
+
+        function rightfunction15(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox15 = window.document.querySelector(".menu15");
+            menuBox15.style.left = left + "px";
+            menuBox15.style.top = top + "px";
+            menuBox15.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed15 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed15 == true){
+                menuBox15.style.display = "none";
+            }
+        }, true);
+
+        var menuDisplayed16 = false;
+        var menuBox16= null;
+
+        function rightfunction16(event) {
+            var left = arguments[0].clientX;
+            var top = arguments[0].clientY;
+
+            menuBox16 = window.document.querySelector(".menu16");
+            menuBox16.style.left = left + "px";
+            menuBox16.style.top = top + "px";
+            menuBox16.style.display = "block";
+
+            arguments[0].preventDefault();
+
+            menuDisplayed16 = true;
+        }
+
+        window.addEventListener("click", function() {
+
+            if(menuDisplayed16 == true){
+                menuBox16.style.display = "none";
+            }
+        }, true);
+
+
+
+
+    </script>
+    <script>
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('desgtext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del2')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('desgtext2').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del3')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('desgtext3').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del4')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('desg').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del5')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('desg2').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del6')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('desg3').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del7')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('meantext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del8')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('mediantext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del9')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('mintext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del10')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('maxtext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del11')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('sdtext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del12')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('difftext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del13')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('rangetext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del14')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('sumtext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del15')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('cortext').style.display="none";
+
+        });
+        document.addEventListener('click', function (event) {
+
+            // If the clicked element doesn't have the right selector, bail
+            if (!event.target.matches('#del16')) return;
+
+            // Don't follow the link
+            event.preventDefault();
+
+            // Log the clicked element in the console
+            document.getElementById('summarytext').style.display="none";
+
+        });
+
+    </script>
+
+
+
+    <script>
+        //login form
+        var attempt = 2; // Variable to count number of attempts.
+        // Below function Executes on click of login button.
+        function validate(){
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if ( username == "Accuracy" && password == "Accuracy"){
+
+                window.location = "index_2 _new.html"; // Redirecting to other page.
+                return false;
+            }
+            else {
+                alert("incorrect USERNAME/PASSWORD");
+                /*  attempt --;// Decrementing by one.
+                  alert("You have left "+attempt+" attempt;");
+                 //   Disabling fields after 3 attempts.
+                  if( attempt == 0){
+                      document.getElementById("username").disabled = true;
+                      document.getElementById("password").disabled = true;
+                      document.getElementById("submit").disabled = true;
+                      return false;
+                  }
+              }*/
+            }}
+    </script>
+
+
+    <!-- shortcut delete button -->
+
+
+    <script>
+
+        function short(){
+            Mousetrap.bind('del', function() {
+
+                    document.getElementById("desgtext").style.display = "none";
+
+            })}
+
+        function short2(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("desgtext2").style.display = "none";
+
+            })}
+        function short3(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("desgtext3").style.display = "none";
+
+            })}
+        function short4(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("desg").style.display = "none";
+
+            })}
+        function short5(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("desg2").style.display = "none";
+
+            })}
+        function short6(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("desg3").style.display = "none";
+
+            })}
+        function short7(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("meantext").style.display = "none";
+
+            })}
+        function short8(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("mediantext").style.display = "none";
+
+            })}
+        function short9(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("mintext").style.display = "none";
+
+            })}
+        function short10(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("maxtext").style.display = "none";
+
+            })}
+        function short11(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("sdtext").style.display = "none";
+
+            })}
+        function short12(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("difftext").style.display = "none";
+
+            })}
+        function short13(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("rangetext").style.display = "none";
+
+            })}
+        function short14(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("sumtext").style.display = "none";
+
+            })}
+        function short15(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("cortext").style.display = "none";
+
+            })}
+        function short16(){
+            Mousetrap.bind('del', function() {
+
+                document.getElementById("summarytext").style.display = "none";
+
+            })}
+        function short17(){
+            Mousetrap.bind('ctrl+l', function() {
+
+                document.getElementById("log").style.display = "none";
+
+            })}
+        function short18(){
+            Mousetrap.bind('ctrl+l', function() {
+
+                //document.getElementById("output ").style.display = "hide";
+                $('#output').fadeTo('500,0');
+            })}
+
+
+    </script>
+    <script>
+    //prevwnt to come back to the page
+    history.pushState(null, null, null);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, null);
+        });
+    </script>
+    <style>
+        .menu,.menu2,.menu3,.menu4,.menu5,.menu6,.menu7,.menu8,.menu9,.menu10,.menu11,.menu12,.menu13,
+        .menu14,.menu15,.menu16
+        {
+            width: 150px;
+            box-shadow: 3px 3px 5px #888888;
+            border-style: solid;
+            border-width: 1px;
+            border-color: grey;
+
+            position: fixed;
+            display:none;
+            z-index: 100;
+            background-color: white;
+            height: 90px;
+            text-align: left;
+        }
+        
+        .menu-item
+        {
+            height: 30px;
+            z-index: 100;
+
+        }
+        
+        .menu-item:hover
+        {
+            background-color: #e9e9e9;
+            cursor: pointer;
+            z-index: 100;
+            width: 148px;
+
+        }
+    </style>
+
+
+</head>
+
+<body class="fix-header card-no-border fix-sidebar">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+   
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" style="color: black;padding-top: 10px"> R-Modeler  </a>
+
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        
+                        <li class="nav-item"  style="float: right"><img src="css/icons/run2.png" style=" height: 50px;width:50px;padding-top:0px;cursor: pointer" id="run">
+                        </li>
+                        <li class="nav-item hidden-sm-down"></li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                       
+                       
+                      <li class="nav-item dropdown">
+                       <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10" style="background:none; border:none; color:#000"><i class="ti-layout-grid2"></i></button>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="user-profile"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Input-files</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a id="textdraggable" class="ui-widget-content drag" style="cursor: pointer" >Text
+                                </a></li>
+                                <li><a id="textdraggable2" class="ui-widget-content drag" style="cursor: pointer">CSV</a></li>
+                                 <li><a id="textdraggable3" class="ui-widget-content drag" style="cursor: pointer">Excel</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Input-Database</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a id="draggable"  class="ui-widget-content drag" style="cursor: pointer">MySql</a></li>
+                               <li><a id="draggable2" class="ui-widget-content drag" style="cursor: pointer">SqlServer</a></li>
+                               <li><a id="draggable3" class="ui-widget-content drag" style="cursor: pointer">Oracle</a></li>
+                            </ul>
+                        </li>
+                    
+                        <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Input-Hadoop</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Output-Files</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Output-Database</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Output-Hadoop</span></a></li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Models</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Stat. Function</span></a>
+                                    <ul aria-expanded="false" class="collapse" id="hover" >
+                                        <li><a id="textdraggable6"  class="ui-widget-content drag" style="cursor: pointer">Min</a></li>
+                                        <li><a id="textdraggable7" class="ui-widget-content drag" style="cursor: pointer">Max</a></li>
+                                        <li><a id="textdraggable4"  class="ui-widget-content drag" style="cursor: pointer">Mean</a></li>
+                                        <li><a id="textdraggable5" class="ui-widget-content drag" style="cursor: pointer">Median</a></li>
+                                        <li><a id="textdraggable8" class="ui-widget-content drag" style="cursor: pointer">SD</a></li>
+                                        <li><a id="textdraggable9" class="ui-widget-content drag" style="cursor: pointer">Difference</a></li>
+                                        <li><a id="textdraggable10" class="ui-widget-content drag" style="cursor: pointer">Range</a></li>
+                                        <li><a id="textdraggable11" class="ui-widget-content drag" style="cursor: pointer">Sum</a></li>
+                                    </ul></li>
+                                <li><a href="#" id="textdraggable12" class="ui-widget-content drag">Correlation</a></li>
+                                <li><a href="#">Regression</a></li>
+                                <li><a href="#">Forecasting</a></li>
+                                <li><a id="textdraggable13"  class="ui-widget-content drag" style="cursor: pointer">Summary</a></li>
+
+                            </ul>
+                        </li>
+               <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">packages</span></a></li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Horizontal navbar and right sidebar toggle -->
+            <!-- ============================================================== -->
+          <div class="right-sidebar" style="height: 280px;">
+                    <div class="slimscrollright">
+                       
+                        <div class="r-panel-body">
+                            <span><i class="ti-close right-side-toggle"></i></span>
+                            <ul class="m-t-20 chatonline">
+                              <li><a href="#">New Files</a></li>
+                                    <li><a href="#">Open Files</a></li>
+                                    <li><a href="#">Save</a></li>
+                                    <li><a href="#">Save As</a></li>
+                                    <!--<li role="separator" class="divider"></li> -->
+                                    <li><a href="login.html"><i class="fa fa-power-off"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <!-- ============================================================== -->
+            <!-- End Horizontal navbar and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                
+                <!-- ============================================================== -->
+                <div class="row" id="frame" >
+                    <div class="col-12">
+                    <div id="desgdiv" class="example_content" style="height:200px">&nbsp;
+
+
+                        <div class="menu">
+                            <div class="menu-item" id="del" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-copy"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-paste"></i>&nbsp Paste</div>
+                        </div>
+                        <div class="menu2">
+                            <div class="menu-item" id="del2" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item "><i class="glyphicon glyphicon-copy"></i>&nbsp Copy</div>
+                            <div class="menu-item "><i class="glyphicon glyphicon-paste"></i>&nbsp Paste</div>
+                        </div>
+                        <div class="menu3">
+                            <div class="menu-item" id="del3" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item ti-files"><i class="glyphicon glyphicon-copy"></i>&nbsp Copy</div>
+                            <div class="menu-item ti-clipboard"><i class="glyphicon glyphicon-paste"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu4">
+                            <div class="menu-item" id="del4" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-copy"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-paste"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu5">
+                            <div class="menu-item" id="del5" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item "><i class="glyphicon glyphicon-copy"></i>&nbsp Copy</div>
+                            <div class="menu-item "><i class="glyphicon glyphicon-paste"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu6">
+                            <div class="menu-item" id="del6" ><i class="glyphicon glyphicon-trash"></i>&nbspDelete</div>
+                            <div class="menu-item "><i class="glyphicon glyphicon-copy"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-paste"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu7">
+                            <div class="menu-item" id="del7" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu8">
+                            <div class="menu-item" id="del8" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu9">
+                            <div class="menu-item" id="del9" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu10">
+                            <div class="menu-item" id="del10" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu11">
+                            <div class="menu-item" id="del11" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu12">
+                            <div class="menu-item" id="del12" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+
+                        <div class="menu13">
+                            <div class="menu-item" id="del13" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+                        <div class="menu14">
+                            <div class="menu-item" id="del14" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+                        <div class="menu15">
+                            <div class="menu-item" id="del15" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+                        <div class="menu16">
+                            <div class="menu-item" id="del16" ><i class="glyphicon glyphicon-trash"></i>&nbsp Delete</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Copy</div>
+                            <div class="menu-item"><i class="glyphicon glyphicon-trash"></i>&nbsp Paste</div>
+                        </div>
+
+
+
+
+
+
+
+                        <div id="desg" class="col-12" style="display: none;" oncontextmenu="rightfunction4(event)" onclick="short4()">
+                             
+    <form action="/action_page.php" class="form-container" id="desgfrm">
+
+
+        
+        <label ><b>MySQL</b> </label><br>
+        <input type="text" id="dbname" class="col-10" placeholder="DB name"  name="db" style="display:-webkit-inline-box;" required><br>
+
+
+
+        <br><input type="text" id="user" class="col-10" placeholder="Enter user" name="user" required><br>
+
+        <br><input type="text" id="pwd" class="col-10" placeholder="Enter password" name="pwd" required><br>
+
+        <br><input type="number" id="port" class="col-5" placeholder="port" name="port" required> &nbsp &nbsp
+        <input type="text" id="host"  class="col-4" placeholder="host" name="host"  required><br>
+
+
+        <br><button type="submit" id="sumbmit" class="btn btn-sm btn-info">Login</button>
+    </form>
+</div>
+
+<div id="desg2" class="col-12" style="display: none;" oncontextmenu="rightfunction5(event)" onclick="short5()">
+                             
+    <form action="/action_page.php" class="form-container" id="desgfrm2">
+
+
+        
+        <label ><b>Sql Server</b> </button></label><br>
+        <input type="text" id="dbname" class="col-10" placeholder="DB name"  name="db" style="display:-webkit-inline-box;" required><br>
+
+
+
+        <br><input type="text" id="user" class="col-10" placeholder="Enter user" name="user" required><br>
+
+        <br><input type="text" id="pwd" class="col-10" placeholder="Enter password" name="pwd" required><br>
+
+        <br><input type="number" id="port" class="col-5" placeholder="port" name="port" required> &nbsp &nbsp
+        <input type="text" id="host"  class="col-4" placeholder="host" name="host"  required><br>
+
+
+        <br><button type="submit" id="sumbmit" class="btn btn-sm btn-info">Login</button>
+    </form>
+</div>
+
+<div id="desg3" class="col-12" style="display: none;" oncontextmenu="rightfunction6(event)" onclick="short6()">
+                             
+    <form action="/action_page.php" class="form-container" id="desgfrm3">
+
+
+        
+        <label ><b>Oracle</b> </label><br>
+        <input type="text" id="dbname" class="col-10" placeholder="DB name"  name="db" style="display:-webkit-inline-box;" required><br>
+
+
+
+        <br><input type="text" id="user" class="col-10" placeholder="Enter user" name="user" required><br>
+
+        <br><input type="text" id="pwd" class="col-10" placeholder="Enter password" name="pwd" required><br>
+
+        <br><input type="number" id="port" class="col-5" placeholder="port" name="port" required> &nbsp &nbsp
+        <input type="text" id="host"  class="col-4" placeholder="host" name="host"  required><br>
+
+
+        <br><button type="submit" id="sumbmit" class="btn btn-sm btn-info">Login</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="desgtext" tabindex="1" class="col-12" style="display: none;" oncontextmenu="rightfunction(event)" onclick="short()">
+
+        <div class="statemachine-demo jtk-surface" id="start">
+
+
+
+        <label for="textfile" class="plumb"><i class=" glyphicon glyphicon-file" id="begin"></i>  &nbsp<b>text</b>
+            <div class="ep" action="begin"></div></label>
+
+        <input type="file" id="textfile" class="col-4"   name="db" style="display:-webkit-inline-box;color: transparent" required>
+
+        <!----<button type="button" id="close" class="waves-effect waves-light btn-xs btn-info " onclick="document.getElementById('desgtext').style.display='none'">X</button>-->
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+
+        </div>
+</div>
+
+<div id="desgtext2" class="col-12 " style="display: none;" oncontextmenu="rightfunction2(event)" onclick="short2()">
+
+
+
+
+
+
+
+        <label for="textfile2" class="plumb "><i class="glyphicon glyphicon-file"></i>&nbsp<b>CSV
+            </b></label>
+        <input type="file" id="textfile2" class="col-4"   name="db" style="display:-webkit-inline-box;color: transparent" required>
+	
+       <!---- <button type="button" id="close" class="waves-effect waves-light btn-xs btn-info " onclick="document.getElementById('desgtext2').style.display='none'">X</button>-->
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+
+    </div>
+
+<div id="desgtext3" class="col-12" style="display: none;" oncontextmenu="rightfunction3(event)" onclick="short3()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+
+
+        <label for="textfile3"><i class="glyphicon glyphicon-file" ></i>&nbsp<b>excel File</b></label>
+        <input type="file" id="textfile3" class="col-4"   name="db" style="display:-webkit-inline-box;color: transparent" required>
+	
+        <!----<button type="button" id="close" class="waves-effect waves-light btn-xs btn-info " onclick="document.getElementById('desgtext3').style.display='none'">X</button>-->
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+
+
+
+
+
+<div id="meantext" class="col-12" style="display: none;" oncontextmenu="rightfunction7(event)" onclick="short7()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+        <label  ><i class="glyphicon glyphicon-screenshot"></i>&nbsp<b>Mean</b></label>
+
+        <input type="text" id="meanfile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+<div id="mediantext" class="col-12" style="display: none;" oncontextmenu="rightfunction8(event)" onclick="short8()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+<label ><i class="glyphicon glyphicon-new-window"></i>&nbsp<b>Median</b></label>
+        <input type="text" id="medianfile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+<div id="mintext" class="col-12" style="display: none;" oncontextmenu="rightfunction9(event)" onclick="short9()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+<label  ><i class="glyphicon glyphicon-circle-arrow-down"></i>&nbsp<b>Min</label></b>
+        <input type="text" id="minfile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+        
+
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+<div id="maxtext" class="col-12" style="display: none;" oncontextmenu="rightfunction10(event)"onclick="short10()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+<label><i class="glyphicon glyphicon-circle-arrow-up"></i>&nbsp<b>Max</b></label>
+        <input type="text" id="maxfile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+
+        
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+<div id="sdtext" class="col-12" style="display: none;" oncontextmenu="rightfunction11(event)" onclick="short11()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+<label><i class="glyphicon glyphicon-sd-video"></i>&nbsp<b>SD</b></label>
+        <input type="text" id="sdfile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+
+        
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+<div id="difftext" class="col-12" style="display: none;" oncontextmenu="rightfunction12(event)" onclick="short12()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+<label><i class="glyphicon glyphicon-console"></i>&nbsp<b>Diff</b></label>
+        <input type="text" id="difffile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+
+        
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+<div id="rangetext" class="col-12" style="display: none;" oncontextmenu="rightfunction13(event)" onclick="short13()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+<label><i class="glyphicon glyphicon-resize-horizontal"></i>&nbsp<b>Range</b></label>
+        <input type="text" id="rangefile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+
+        
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+<div id="sumtext" class="col-12" style="display: none;" oncontextmenu="rightfunction14(event)" onclick="short14()">
+                               
+    <form action="/action_page.php" class="form-container">
+
+<label><i class="glyphicon glyphicon-plus-sing"></i>&nbsp<b>Sum</b></label>
+
+        
+        <input type="text" id="sumfile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+    </form>
+</div>
+                        <div id="cortext" class="col-12" style="display: none;" oncontextmenu="rightfunction15(event)" onclick="short15()">
+
+                            <form action="/action_page.php" class="form-container">
+
+                                <label><i class="glyphicon glyphicon-random"></i>&nbsp<b>Correlation</b></label>
+                                <input type="text" id="corfile" class="col-8"   name="db" style="display:-webkit-inline-box;" required>
+
+
+
+
+                                <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+                            </form>
+                        </div>
+
+
+
+<div id="summarytext" class="col-12 " style="display: none;" oncontextmenu="rightfunction16(event)" onclick="short16()">
+    <div class="statemachine-demo jtk-surface">
+
+
+      <label action="/action_page.php" class="form-container plumb"><i class="glyphicon glyphicon-retweet" id="phone1"></i>
+          <div class="ep" action="phone1" ></div>&nbsp
+
+
+
+        
+       <b>Summary</b>
+
+      </label>
+        <!--<button type="submit" id="sumbmit" class="btn">Login</button>-->
+</div>
+</div>
+                    </div>
+					
+					
+					
+                    <div id="logdiv" class="example_content" style="height:200px" onclick="short17()">
+					
+    <div id="log" class="col-12" style="display:none">
+
+        <ul>
+            <li><a target="_blank" id="printlink">/ocpu/tmp/x0011352fb53c11/R/ .val</a></li>
+            <li><a target="_blank" id="readlink">/ocpu/tmp/x0011352fb53c11/R/read</a></li>
+            <li><a target="_blank" id="stdoutlink">/ocpu/tmp/x0011352fb53c11/stdout</a></li>
+            <li><a target="_blank" id="sourcelink">/ocpu/tmp/x0011352fb53c11/source</a></li>
+            <li><a target="_blank" id="consolelink">/ocpu/tmp/x0011352fb53c11/console</a></li>
+            <li><a target="_blank" id="infolink">/ocpu/tmp/x0011352fb53c11/info</a></li>
+            <li><a target="_blank" id="vallink">/ocpu/tmp/x0011352fb53c11/files</a></li>
+            <li><a target="_blank" id="deslink">/ocpu/tmp/x0011352fb53c11/files/DESCRIPTION</a></li>
+
+
+        </ul>
+
+
+
+                               
+
+</div>
+
+                                <div id="logtext" class="col-12" style="display: none;" onclick="short17()">
+                               
+
+</div>
+</div>
+                       <div id="consolediv" class="example_content" style="height:200px" onclick="$('#output').fadeTo(500,0);" >
+					   
+					  <pre style="height:660px" id="out" ><code id="output" style="opacity: 1"></code></pre>
+					   
+   <div id="console" class="col-12" style="display: none;">
+                               
+
+</div>
+                                <div id="consoletext" class="col-12" style="display: none;">
+                               
+
+</div>
+</div>
+                      
+                       
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+              
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+         
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="bootstrap/js/popupwindow.js"></script>
+<script>
+
+
+
+
+var Demo = (function($, undefined){
+	
+	$(function(){
+        QuickDemo();
+		example2();
+    });
+	function QuickDemo(){
+        $("#basic-demo").PopupWindow({
+            autoOpen    : false
+        });
+        $("#basic-demo_button").on("click", function(event){
+            $("#basic-demo").PopupWindow("open");
+        });
+    }
+	function example2(){
+       $("#desgdiv").PopupWindow({
+            title       : "Designer",
+            modal       : false,
+            autoOpen    : true,
+			width       : 1100,
+			top         : 50,
+            left        : 250,
+			
+        });
+        $("#logdiv").PopupWindow({
+            title       : "Log",
+            modal       : false,
+             autoOpen    : true,
+			width       : 1100,
+			top         : 265,
+            left        : 250,
+        });
+        $("#consolediv").PopupWindow({
+            title       : "Console",
+            modal       : false,
+             autoOpen    : true,
+			width       : 1100,
+			top         : 480,
+            left        : 250,
+        });
+
+
+
+        
+        $("#desgdiv").on("close.popupwindow", function(event){
+            $("#demo-2_second").PopupWindow("close");
+            $("#demo-2_third").PopupWindow("close");
+        });
+       
+        $("#demo-2_button1").on("click", function(event){
+            $("#desgdiv").PopupWindow("open");
+        });
+        $("#demo-2_button2").on("click", function(event){
+            $("#demo-2_second").PopupWindow("open");
+        });
+        $("#demo-2_button3").on("click", function(event){
+            $("#demo-2_third").PopupWindow("open");
+        });
+    }
+	})(jQuery);
+</script>
+<script>
+    $("#run").on("click",function(){
+        document.getElementById("log").style.display="block";
+    });
+</script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="bootstrap/js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="bootstrap/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="bootstrap/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="bootstrap/js/sticky-kit.min.js"></script>
+    <script src="bootstrap/js/jquery.sparkline.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="bootstrap/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="bootstrap/js/jQuery.style.switcher.js"></script>
+    <script src="bootstrap/js/js/jsplumb.js"></script>
+    <script src="bootstrap/js/plumb.js"></script>
+    <script src="bootstrap/js/js/jsplumb.min.js"></script>
+
+</body>
+
+</html>
